@@ -28,7 +28,7 @@ This project gives you manual and automatic control over the vertical range of y
 
 ## Demo
 
-<video src="example.mp4" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/12023a7f-92c1-4fa7-9dd1-cb1981feacdc" controls width="100%"></video>
 
 ---
 
