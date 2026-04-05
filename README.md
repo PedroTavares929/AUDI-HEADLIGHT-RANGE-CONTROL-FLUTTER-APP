@@ -84,10 +84,11 @@ Three versions are included in the root of the repository:
 
 Flash the version that matches your hardware setup using the Arduino IDE.
 
-**Required Arduino libraries:**
-- `MCP_CAN` — CAN bus communication
-- `EEPROM` — persistent storage
-- `BluetoothSerial` (ESP32) or use SoftwareSerial for HC-05/HC-06
+**Required Arduino/ESP32 libraries:**
+- `ESP32-TWAI-CAN` — ESP32 CAN bus via MCP2515
+- `ArduinoJson` — JSON command parsing
+- `EEPROM` — persistent config/position storage
+- `BluetoothSerial` — built-in ESP32 Bluetooth (no external module needed)
 
 ---
 
