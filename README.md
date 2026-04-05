@@ -37,11 +37,9 @@ This project gives you manual and automatic control over the vertical range of y
 ### Components
 | Component | Purpose |
 |-----------|---------|
-| Arduino (Nano/Uno/Mega) | Main controller |
-| DRV8825 x2 | Stepper motor drivers (left & right) |
-| MCP2515 | CAN bus interface |
-| PC817 optocoupler | Headlight on/off detection (pin 14) |
-| HC-05 / HC-06 | Bluetooth Serial module |
+| ESP32 | Main controller with built-in Bluetooth Serial |
+| MCP2515 | SPI CAN bus interface module |
+| DRV8825 x2 | Stepper motor drivers (left & right headlight) |
 
 ### Pin Wiring
 | Pin | Function |
@@ -49,9 +47,23 @@ This project gives you manual and automatic control over the vertical range of y
 | 2 | Motor enable (LOW = enabled) |
 | 4 | Left motor DIR |
 | 5 | Left motor STEP |
-| 6 | Right motor DIR |
-| 7 | Right motor STEP |
-| 14 | PC817 headlight detect |
+| 16 | Right motor STEP |
+| 17 | Right motor DIR |
+| 21 | CAN TX (to MCP2515) |
+| 22 | CAN RX (from MCP2515) |
+
+### Audi A4 B6 CAN Bus — Headlight Detection
+
+The system listens on the Audi A4 B6 (2001–2004) body CAN bus for the instrument cluster lighting message:
+
+| Parameter | Value |
+|-----------|-------|
+| CAN ID | `0x531` |
+| Byte index | `0` |
+| Lights ON value | `0x04` |
+| Lights OFF value | `0x03` |
+
+When `byte[0]` of frame `0x531` changes to `0x04`, the ESP32 moves both motors to the configured default position. When it changes to `0x03` (lights off), motors return to minimum.
 
 ### Motor Range
 - Min: `0` steps
